@@ -1,0 +1,81 @@
+body {
+    margin: auto 0;
+    height: 1600px;
+    width: 100%;
+    background-image: url("https://i.ibb.co/NjvfwNw/Untitled-Artwork.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+}
+.boxes1 {
+    height: 400px;
+    border-radius: solid 2px black;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+
+    
+    
+}
+.boxes2 {
+    height: 400px;
+    border-radius: solid 2px black;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    
+    
+}
+.boxes3 {
+    height: 400px;
+    border-radius: solid 2px black;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+
+    
+    
+}
+.tick {
+    
+    
+    padding: 20px;
+    height: 200px;
+    width: 200px;
+    background-color: rgb(127, 0, 0);
+    
+    
+    
+}
+.tac {
+    
+     padding: 20px;
+    height: 200px;
+    width: 200px;
+    background-color: rgb(127, 0, 0);
+     
+    
+}
+.toe {
+    
+    flex-direction: row;
+    padding: 20px;
+    height: 200px;
+    width: 200px;
+    background-color: rgb(127, 0, 0);
+    
+    
+} 
+.full {
+    height: 200px;
+    background-color: aqua;
+}
