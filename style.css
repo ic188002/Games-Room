@@ -221,4 +221,13 @@
     right: 0px;
     top: 0px;
     width: 59%;
+    z-index: -1;
+}
+h3 {
+    font-size: 55px;;
+}
+.display-player {
+    background-color: transparent;
+    background-image:  url('https://i.ibb.co/q1N0fdz/Untitled-Artwork-32.png');
+    background-size: cover;
 }
