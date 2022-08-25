@@ -3,7 +3,7 @@
     margin: auto 0;
     height: 1900px;
     max-width: 100%;
-    background-image: url("https://i.ibb.co/Wpntr4c/Untitled-Artwork-10.jpg");
+    background-image: url("https://i.ibb.co/Y35X58v/Untitled-Artwork-11.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -100,6 +100,7 @@
 .playerOO {
     color: rgb(98, 2, 76);
     font-size: 75px;
+ 
 }
 
 .playerXX {
@@ -203,10 +204,21 @@
 
   }
 
-  img {
+  .bear {
     position: absolute;
     right: 0;
     height: 400px;
     top: 500px;
   }
+  .tick {
+    top: 0;
+    position: absolute;
+    width: 60%;
+  }
 
+.boat {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 59%;
+}

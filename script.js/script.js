@@ -5,6 +5,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const resetButton = document.querySelector('#reset');
     const announcer = document.querySelector('.announcer');
 
+
+
+    
     let board = ['', '', '', '', '', '', '', '', ''];
     let currentPlayer = 'X';
     let isGameActive = true;
@@ -14,13 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const TIE = 'TIE';
 
 
-    /*
-        Indexes within the board
-        [0] [1] [2]
-        [3] [4] [5]
-        [6] [7] [8]
-    */
-
+    //outline the winning arrays inside an array 
     const winningConditions = [
         [0, 1, 2],
         [3, 4, 5],
@@ -31,6 +28,31 @@ window.addEventListener('DOMContentLoaded', () => {
         [0, 4, 8],
         [2, 4, 6]
     ];
+
+    //function to control the back windown of the gun game
+    let back = document.querySelector('.back');
+    //select the .back class and asign it a varible
+    let howMuch = 15;
+    // set varraible, this is will be called upon in the switch case
+    window.addEventListener('load', () => {
+        back.style.position = 'absolute';
+        back.style.left = 0;
+        back.style.top = 500;
+    });
+    window.addEventListener('keyup', (e) => {
+        switch (e.key) {
+            case 'ArrowLeft':
+                back.style.left = parseInt(back.style.left) - howMuch + 'px';
+                break;
+            case 'ArrowRight':
+                back.style.left = parseInt(back.style.left) + howMuch + 'px';
+                break;
+          
+          
+        }
+    });
+
+
 
     function handleResultValidation() {
         let roundWon = false;
@@ -50,11 +72,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-        // fish moving, want to get the fish moving with each awswer
-        // $( ".fish" ).mouseenter(function(){
-        //     $( ".fish" ).animate({ "left": "-=20px" }, "fast" );
-        //   });
-    
+ 
     if (roundWon) {
             announce(currentPlayer === 'X' ? PLAYERX_WON : PLAYERO_WON);
             isGameActive = false;
@@ -66,26 +84,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    const announce = (type) => {
-        switch(type){
-            case PLAYERO_WON:
-                announcer.innerHTML = 'Player <span class="playerOO">O</span> Won';
-                break;
-            case PLAYERX_WON:
-                announcer.innerHTML = 'Player <span class="playerXX">X</span> Won';
-                break;
-            case TIE:
-                announcer.innerText = 'Tie';
-        }
-        announcer.classList.remove('hide');
-    };
-    const isValidAction = (tile) => {
-        if (tile.innerText === 'X' || tile.innerText === 'O'){
-            return false;
-        }
-
-        return true;
-    };
 
     const updateBoard =  (index) => {
         board[index] = currentPlayer;
@@ -108,6 +106,28 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
     
+
+    const announce = (type) => {
+        switch(type){
+            case PLAYERO_WON:
+                announcer.innerHTML = 'Player <span class="playerOO">O</span> Won';
+                break;
+            case PLAYERX_WON:
+                announcer.innerHTML = 'Player <span class="playerXX">X</span> Won';
+                break;
+            case TIE:
+                announcer.innerText = 'Tie';
+        }
+        announcer.classList.remove('hide');
+    };
+    const isValidAction = (tile) => {
+        if (tile.innerText === 'X' || tile.innerText === 'O'){
+            return false;
+        }
+
+        return true;
+    };
+
     const resetBoard = () => {
         board = ['', '', '', '', '', '', '', '', ''];
         isGameActive = true;
@@ -133,18 +153,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// $('.fish').click(function() {
-//     let box2 = $('.fish');
 
-//     function animation() {
-//     box2.animate({'margin-left': '100px'}, 1000);//calling animiation recursuvely
-//     box2.animate({'margin-left': '0px'}, 500);
-//     box2.animate({'margin-left': '100px'}, 1000);//calling animiation recursuvely
-//     box2.animate({'margin-left': '0px'}, 500);
-//     }
-//     animation()
-//     //call back funtion here
-// })
 
 
 
@@ -157,18 +166,13 @@ $( "#right" ).click(function() {
   $( "#left" ).click(function(){
     $( ".UFO" ).animate({ "left": "-=50px" }, "fast" );
   });
-// working
 
 
-// //annimating the fish
-//   $(".fish").click(function(){
-//     $(".fish").animate({
-//       right: '100px', slow,
-//       left: '250px', slow,
-      
+       // fish moving, want to get the fish moving with each awswer
+        // $( ".fish" ).mouseenter(function(){
+        //     $( ".fish" ).animate({ "left": "-=20px" }, "fast" );
+        //   });
     
-//     });
-//   }); 
 
   $( ".fish" ).mouseenter(function(){
     $( ".fish" ).animate({ "left": "-=20px" }, "fast" );
@@ -177,24 +181,3 @@ $( "#right" ).click(function() {
 
 
 
-  
-//moving the box
-  let circle = document.querySelector('.back');
-  let moveBy = 10;
-  window.addEventListener('load', () => {
-      circle.style.position = 'absolute';
-      circle.style.left = 0;
-      circle.style.top = 500;
-  });
-  window.addEventListener('keyup', (e) => {
-      switch (e.key) {
-          case 'ArrowLeft':
-              circle.style.left = parseInt(circle.style.left) - moveBy + 'px';
-              break;
-          case 'ArrowRight':
-              circle.style.left = parseInt(circle.style.left) + moveBy + 'px';
-              break;
-        
-        
-      }
-  });
