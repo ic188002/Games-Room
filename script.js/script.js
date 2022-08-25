@@ -27,8 +27,8 @@
 
     // this adds an event listener to every tile in the array. when we click on the  tile the 
     //user action functiuon will be called
-    tiles.forEach( (tile, index) => {
-        tile.addEventListener('click', () => userAction(tile, index));
+    tiles.forEach( (tile, i) => {
+        tile.addEventListener('click', () => userAction(tile, i));
     });
 
 
@@ -45,7 +45,7 @@
 
 
 
-
+//moving the background
     window.addEventListener('keyup', (e) => {
         switch (e.key) {
             case 'ArrowLeft':
@@ -54,15 +54,12 @@
             case 'ArrowRight':
                 back.style.left = parseInt(back.style.left) + howMuch + 'px';
                 break;
-               
-          
-          
         }
-        console.log(window)
+        
     });
 
 
-
+//a loop for the win conditions array
     function resultChecker() {
         let roundWon = false;
         for (let i = 0; i <= 7; i++) {
@@ -72,39 +69,57 @@
             const c = Table[winCondition[2]];
             if (a === '' || b === '' || c === '') {
                 continue;
+                //the continue key word will skip though empty tiles 
             }
             if (a === b && b === c) {
                 roundWon = true;
                 break;
-                
+                //using the break keyword to exit the loop
             }
         }
     console.log(winningConditions[1])
  
 
 
-
+//if we have a winnger we use the announce funciton
     if (roundWon) {
+        //this calls it based on the current players values
             announce(currentUser === 'X' ? PLAYERX_WON : PLAYERO_WON);
             isGameActive = false;
             return;
+            
         }
-
-
-
-
-
+        console.log(isGameActive);
+//if we dont have a winner and our board has no empty strings left then we accounce a tie
     if (!Table.includes(''))
         announce(TIE);
     }
 
 
-
-    const updateBoard =  (index) => {
-        Table[index] = currentUser;
+//update function 
+//sets the value of in the board array to be equal to the current player var
+    const updateBoard = (i) => {
+        Table[i] = currentUser;
     }
 
 
+//A Turn in the game
+const userAction = (tile, i) => {
+    if(validAction(tile) && isGameActive) {
+         //check to see if its a valid function
+         // if it has an end game state or not
+        tile.innerText = currentUser;
+        //if both condition are turn we set the innertext to true (X, O)
+        tile.classList.add(`player${currentUser}`);
+        //asigning the new class based on current player
+        updateBoard(i);
+        //update the array
+        resultChecker();
+        //check if we have a winner or not 
+        changePlayer();
+        //then change player methord
+    }
+}
 
 
 
@@ -128,48 +143,31 @@
 
 
 
-//A Turn in the game
-    const userAction = (tile, index) => {
-        if(isValidAction(tile) && isGameActive) {
-             //check to see if its a valid function
-             // if it has an end game state or not
-            tile.innerText = currentUser;
-            //if both condition are turn we set the innertext to true (X, O)
-            tile.classList.add(`player${currentUser}`);
-            //asigning the new class based on current player
-            updateBoard(index);
-            //update the array
-            resultChecker();
-            //check if we have a winner or not 
-            changePlayer();
-            //then change player methord
-        }
-    }
-    
+
 
 
 //checking that the move is possible
-    const isValidAction = (tile) => {
+    const validAction =(tile) => {
         if (tile.innerText === 'X' || tile.innerText === 'O'){
             return false;
         }
-
+    //this makes sure only empty tiles are selected
         return true;
     };
 
 
 
 
-
-    const resetBoard = () => {
-        Table = ['', '', '', '', '', '', '', '', ''];
+//resests the game
+    const reStart = () => {
         isGameActive = true;
+        Table = ['', '', '', '', '', '', '', ''];
         announcer.classList.add('hide');
-
-        if (currentUser === 'O') {
+        //hides the announcer, the game is active and there are 9 new empty strings for the array
+        if (currentUser == 'O') {
             changePlayer();
         }
-
+// this removes the empty tile and sets the string to empty
         tiles.forEach(tile => {
             tile.innerText = '';
             tile.classList.remove('playerX');
@@ -206,7 +204,7 @@ const announce = (type) => {
 
 
 
- resetButton.addEventListener('click', resetBoard);
+ resetButton.addEventListener('click', reStart);
 
 
 
