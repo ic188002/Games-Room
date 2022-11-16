@@ -45,18 +45,6 @@
 
 
 
-//moving the background
-    window.addEventListener('keyup', (e) => {
-        switch (e.key) {
-            case 'ArrowLeft':
-                back.style.left = parseInt(back.style.left) - howMuch + 'px';
-                break;
-            case 'ArrowRight':
-                back.style.left = parseInt(back.style.left) + howMuch + 'px';
-                break;
-        }
-        
-    });
 
 
 //a loop for the win conditions array
@@ -77,11 +65,11 @@
                 //using the break keyword to exit the loop
             }
         }
-    console.log(winningConditions[1])
+    
  
 
 
-//if we have a winnger we use the announce funciton
+//if we have a winnger we use the announce funciton›
     if (roundWon) {
         //this calls it based on the current players values
             announce(currentUser === 'X' ? PLAYERX_WON : PLAYERO_WON);
@@ -90,6 +78,7 @@
             
         }
         console.log(isGameActive);
+        ›
 //if we dont have a winner and our board has no empty strings left then we accounce a tie
     if (!Table.includes(''))
         announce(TIE);
@@ -181,13 +170,14 @@ const userAction = (tile, i) => {
 
 //Annouce the end game state to the user
 const announce = (type) => {
-    //recives an end game string called type, and based on that it will modifly the annoucment
+    //recives an end game string called type(any), and based on that it will modifly the annoucment
     switch(type){
+    //
         case PLAYERO_WON:
-            announcer.innerHTML = 'Player <span class="playerOO">O</span> Won';
+            announcer.innerHTML = '<span class="playerOO">Player O Won</span>';
             break;
         case PLAYERX_WON:
-            announcer.innerHTML = 'Player <span class="playerXX">X</span> Won';
+            announcer.innerHTML = '<span class="playerXX">Player X Won</span>';
             break;
         case TIE:
             announcer.innerText = 'Tie';
@@ -207,6 +197,29 @@ const announce = (type) => {
  resetButton.addEventListener('click', reStart);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
 
 
 
@@ -236,3 +249,16 @@ $( "#right" ).click(function() {
 
 
 
+
+//moving the background
+window.addEventListener('keyup', (e) => {
+    switch (e.key) {
+        case 'ArrowLeft':
+            back.style.left = parseInt(back.style.left) - howMuch + 'px';
+            break;
+        case 'ArrowRight':
+            back.style.left = parseInt(back.style.left) + howMuch + 'px';
+            break;
+    }
+    
+});
