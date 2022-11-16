@@ -190,8 +190,6 @@ The resultChecker function is a for loop which has a nested if statement for eva
 
 
 
- 
-This arrow function is activated after the user input is registered, it checks whether the input is a valid action and the game is still active and has not been won, lost or tied. From there, it updates the board, checks the result and changes the player.
 
 
 
